@@ -1,0 +1,41 @@
+<div>
+    <h2>Estados
+        <small>Con su lista de Ciudades</small>
+    </h2>
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Elige un Estado!!</h1>
+            Y verifica que cambian las Ciudades!<br/><br/>
+
+            <div ng-controller="stateController as app">
+
+                <!--<div ng-repeat="state in states">
+                    <details>
+                        <summary class="form-control">
+                            {{ state.name }}
+                        </summary>
+                        <table style="background: #ecf0f1" class="form-control" ng-repeat="city in state.cities">
+                            <tr>
+                                <td>
+                                    {{ city.name }}
+                                </td>
+                            </tr>
+                        </table>
+                    </details>
+                </div>-->
+
+                <select class="form-control" ng-model="userState"
+                        ng-options="state.name for state in states track by state.name">
+                    <option value=''>Seleciona un Estado</option>
+                </select><br>
+
+                <select class="form-control" ng-model="userCity"
+                        ng-options="city.name for city in userState.cities track by city.name">
+                    <option value=''>Seleciona una Ciudad</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+

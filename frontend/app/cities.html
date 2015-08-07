@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ciudades</title>
+</head>
+<body ng-app="myApp" ng-controller="cityController as app">
+    <table ng-repeat="city in cities">
+        <tr>
+            <td>
+                 {{ city.id}}
+            </td>
+            <td>
+                {{ city.name }}
+            </td>
+        </tr>
+    </table>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="cities.js"></script>
+</body>
+</html>

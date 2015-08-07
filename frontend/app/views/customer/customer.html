@@ -1,0 +1,145 @@
+<div class="login-page">
+    <div class="row">
+        <div class="col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4">
+            <img src="images/logo_ticket.png" class="user-avatar"/>
+
+            <h1>Registro de Usuario <br>
+                <small>Cliente</small>
+            </h1>
+
+            <form role="form" ng-submit="submit()" name="myForm">
+                <div ng-repeat="error in errors">
+                    <label class="label label-danger">{{error.message}}</label><br>
+                </div>
+                <table>
+                    <tr>
+                        <td colspan="2">
+                            <div class="form-group">
+                                <input type="email" name="email" class="form-control input-underline input-lg"
+                                       placeholder="Correo Electrónico"
+                                       ng-model="newUser.email" required>
+                                    <span style="color:#d9534f"
+                                          ng-show="myForm.email.$dirty && myForm.email.$invalid">
+                                        <span ng-show="myForm.email.$error.required">El correo no puede estar en blanco</span>
+                                        <span ng-show="myForm.email.$error.email">Correo inválido.</span>
+                                    </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <input type="text" name="name" class="form-control input-underline input-lg"
+                                       placeholder="Nombre"
+                                       ng-model="newUser.name" required>
+                                    <span style="color:#d9534f"
+                                          ng-show="myForm.name.$dirty && myForm.name.$invalid">
+                                        <span ng-show="myForm.name.$error.required">Indique su Nombre</span>
+                                    </span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <input type="text" name="lastName" class="form-control input-underline input-lg"
+                                       placeholder="Apellido"
+                                       ng-model="newUser.lastName" required>
+                                    <span style="color:#d9534f"
+                                          ng-show="myForm.lastName.$dirty && myForm.lastName.$invalid">
+                                        <span ng-show="myForm.lastName.$error.required">Indique su Apellido</span>
+                                    </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="form-group">
+                                    <textarea rows="3" class="form-control input-underline input-lg"
+                                              placeholder="Dirección"
+                                              ng-model="newUser.address"></textarea>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-controller="stateController">
+                        <td>
+                            <select class="form-control input-underline input-lg"
+                                    name="state"
+                                    style="background: #3ca2e0"
+                                    ng-model="userState"
+                                    ng-options="state.name for state in states track by state.name"
+                                    required>
+                                <option value=''>Seleciona un Estado</option>
+                            </select>
+                                 <span style="color:#d9534f"
+                                       ng-show="myForm.state.$dirty && myForm.state.$invalid">
+                                    <span ng-show="myForm.state.$error.required">Estado donde vive</span>
+                                 </span>
+                        </td>
+                        <td>
+                            <select class="form-control input-underline input-lg"
+                                    name="city"
+                                    style="background: #3ca2e0"
+                                    ng-model="newUser.city"
+                                    ng-options="city.name for city in userState.cities track by city.name" required>
+                                <option value=''>Seleciona una Ciudad</option>
+                            </select>
+                                <span style="color:#d9534f"
+                                      ng-show="myForm.city.$dirty && myForm.city.$invalid">
+                                    <span ng-show="myForm.city.$error.required">Ciudad donde vive</span>
+                                 </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <input type="text" class="form-control input-underline input-lg"
+                                       placeholder="Teléfono de Habitación"
+                                       ng-model="newUser.homePhone">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <input type="text" class="form-control input-underline input-lg"
+                                       placeholder="Teléfono Celular"
+                                       ng-model="newUser.cellPhone">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="form-group">
+                                <input type="number" name="identityDoc" class="form-control input-underline input-lg"
+                                       ng-model="newUser.identityDoc"
+                                       placeholder="Cédula"
+                                       required>
+                                    <span style="color:#d9534f"
+                                          ng-show="myForm.identityDoc.$dirty && myForm.identityDoc.$invalid">
+                                        <span ng-show="myForm.identityDoc.$error.required">Indique su Cédula</span>
+                                        <span ng-show="myForm.identityDoc.$error.number">La cédula solo debe contener números</span>
+                                    </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="form-group">
+                                <input type="password" class="form-control input-underline input-lg"
+                                       placeholder="Contraseña"
+                                       ng-model="newUser.user.password">
+                            </div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" class="btn btn-white btn-outline btn-lg btn-rounded"
+                                   value="Registrar"/>
+                            <a ui-sref="login" class="btn btn-white btn-outline btn-rounded btn-lg">Cancelar</a>
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+        </div>
+    </div>
+
+</div>
