@@ -10,7 +10,7 @@ from django.contrib.auth import authenticate, login
 from models import State, City, Customer, Company, Branch
 from serializers import StateSerializer, CitySerializer, CustomerSerializer, UserSerializer, CompanySerializer, \
     BranchSerializer
-from ticketIntelligence.utils import auth_user, get_user, make_error
+from ticketIntelligence.utils import auth_user, get_user, make_error, save_user
 
 
 class StateViewSet(viewsets.ModelViewSet):
@@ -30,13 +30,7 @@ class CustomerViewSet(viewsets.ModelViewSet):
     def create(self, request, **kwargs):
         serializer = CustomerSerializer(data=request.data)
         if serializer.is_valid():
-            user = User.objects.create(**request.data["user"])
-            user.first_name = request.data["name"]
-            user.last_name = request.data["lastName"]
-            perm = Permission.objects.get(codename=UserPermissions.IS_CUSTOMER)
-            user.user_permissions.add(perm)
-            user.password = make_password(user.password)
-            user.save()
+            user = save_user(request.data, UserPermissions.IS_CUSTOMER)
             city = City(**request.data["city"])
             customer = Customer(
                 name=request.data["name"],
@@ -66,12 +60,7 @@ class CompanyViewSet(viewsets.ModelViewSet):
     def create(self, request, **kwargs):
         serializer = CompanySerializer(data=request.data)
         if serializer.is_valid():
-            user = User.objects.create(**request.data["user"])
-            user.first_name = request.data["name"]
-            perm = Permission.objects.get(codename=UserPermissions.IS_COMPANY)
-            user.user_permissions.add(perm)
-            user.password = make_password(user.password)
-            user.save()
+            user = save_user(request.data, UserPermissions.IS_COMPANY)
             city = City(**request.data["city"])
             company = Company(
                 name=request.data["name"],
@@ -98,12 +87,7 @@ class BranchViewSet(viewsets.ModelViewSet):
     def create(self, request, **kwargs):
         serializer = BranchSerializer(data=request.data)
         if serializer.is_valid():
-            user = User.objects.create(**request.data["user"])
-            user.first_name = request.data["name"]
-            perm = Permission.objects.get(codename=UserPermissions.IS_BRANCH)
-            user.user_permissions.add(perm)
-            user.password = make_password(user.password)
-            user.save()
+            user = save_user(request.data, UserPermissions.IS_BRANCH)
             company = Company(**request.data["company"])
             city = City(**request.data["city"])
             branch = Branch(
@@ -121,6 +105,7 @@ class BranchViewSet(viewsets.ModelViewSet):
             messages = []
             make_error(serializer.errors.values(), messages)
             return Response({"status": "FAILURE", "msg_status" : messages})
+
 
 class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
