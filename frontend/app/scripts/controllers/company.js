@@ -27,7 +27,7 @@ angular.module('myApp')
             $scope.newCompany.type = 'Company';
             $scope.newCompany.user.id = null;
             $scope.newCompany.user.username = $scope.newCompany.user.email;
-            CompanyFactory.save($scope.newCompany)
+            CompanyFactory.save($scope.newUser)
                 .success(function (data) {
                     $scope.result = data;
                     if ($scope.result.status == "SUCCESS") {

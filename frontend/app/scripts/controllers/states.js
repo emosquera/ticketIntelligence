@@ -28,7 +28,7 @@ angular.module('myApp')
                     $scope.states = data;
                 })
                 .error(function (error) {
-                    $scope.status = 'Unable to load customer data: ' + error.message;
+                    $scope.status = 'Unable to load states data: ' + error.message;
                 });
         }
     });

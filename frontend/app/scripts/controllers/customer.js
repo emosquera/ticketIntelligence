@@ -8,7 +8,7 @@ angular.module('myApp')
         var dataFactory = {};
 
         dataFactory.save = function (newUser) {
-            return $http.post(myAppConfiguration.url + myAppConfiguration.port +"/customers/", newCompany);
+            return $http.post(myAppConfiguration.url + myAppConfiguration.port +"/customers/", newUser);
         };
 
         return dataFactory;
@@ -17,26 +17,26 @@ angular.module('myApp')
 
     .controller("customerController", function ($scope, $log, $location, UserFactory) {
 
-        $scope.companyState = new Object();
-        $scope.newCompany = new Object();
-        $scope.newCompany.user = {};
-        $scope.newCompany.address = "";
-        $scope.newCompany.homePhone = "";
-        $scope.newCompany.cellPhone = "";
+        $scope.userState = new Object();
+        $scope.newUser = new Object();
+        $scope.newUser.user = {};
+        $scope.newUser.address = "";
+        $scope.newUser.homePhone = "";
+        $scope.newUser.cellPhone = "";
 
         $scope.submit = function () {
-            $scope.newCompany.type = 'Customer';
-            $scope.newCompany.user.id = null;
-            $scope.newCompany.user.email = $scope.newCompany.email;
-            $scope.newCompany.user.username = $scope.newCompany.email;
-            UserFactory.save($scope.newCompany)
+            $scope.newUser.type = 'Customer';
+            $scope.newUser.user.id = null;
+            $scope.newUser.user.email = $scope.newUser.email;
+            $scope.newUser.user.username = $scope.newUser.email;
+            UserFactory.save($scope.newUser)
                 .success(function (data) {
                     $scope.result = data;
                     if ($scope.result.status == "SUCCESS") {
                         $location.path('/welcome');
                         $scope.status = 'Usuario Registrado';
-                        $scope.companyState = new Object();
-                        $scope.newCompany = new Object();
+                        $scope.userState = new Object();
+                        $scope.newUser = new Object();
                     } else {
                         $scope.errors = $scope.result.msg_status;
                     }
