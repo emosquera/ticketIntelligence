@@ -26,8 +26,10 @@ angular.module('myApp')
         $scope.submit = function () {
             $scope.newCompany.type = 'Company';
             $scope.newCompany.user.id = null;
+            $scope.newCompany.user.email = $scope.newCompany.user.email;
             $scope.newCompany.user.username = $scope.newCompany.user.email;
-            CompanyFactory.save($scope.newUser)
+            $scope.newCompany.lastname = "";
+            CompanyFactory.save($scope.newCompany)
                 .success(function (data) {
                     $scope.result = data;
                     if ($scope.result.status == "SUCCESS") {
