@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
-
+from django.contrib.auth.hashers import make_password
 
 from backend.models import Customer, Company
 from backend.serializers import CustomerSerializer
+from django.contrib.auth.models import User, Permission
 
 __author__ = 'conamerica15'
 
@@ -48,3 +49,14 @@ def make_error(errors, errormessages):
         else:
             make_error(error.values(), errormessages)
     return errormessages;
+
+
+def save_user(data, userpermission):
+    user = User.objects.create(**data["user"])
+    user.first_name = data["name"]
+    user.last_name = data["lastName"]
+    perm = Permission.objects.get(codename=userpermission)
+    user.user_permissions.add(perm)
+    user.password = make_password(user.password)
+    user.save()
+    return user
