@@ -17,11 +17,13 @@
                             <div class="form-group">
                                 <input type="email" name="email" class="form-control input-underline input-lg"
                                        placeholder="Correo Electrónico"
+                                       ng-maxlength="320"
                                        ng-model="newUser.email" required>
                                     <span style="color:#d9534f"
                                           ng-show="myForm.email.$dirty && myForm.email.$invalid">
                                         <span ng-show="myForm.email.$error.required">El correo no puede estar en blanco</span>
                                         <span ng-show="myForm.email.$error.email">Correo inválido.</span>
+                                        <span ng-show="myForm.email.$error.maxlength">No puede contener mas de 320 caracteres.</span>
                                     </span>
                             </div>
                         </td>
@@ -31,10 +33,12 @@
                             <div class="form-group">
                                 <input type="text" name="name" class="form-control input-underline input-lg"
                                        placeholder="Nombre"
+                                       ng-maxlength="50"
                                        ng-model="newUser.name" required>
                                     <span style="color:#d9534f"
                                           ng-show="myForm.name.$dirty && myForm.name.$invalid">
                                         <span ng-show="myForm.name.$error.required">Indique su Nombre</span>
+                                        <span ng-show="myForm.name.$error.maxlength">No puede contener mas de 50 caracteres.</span>
                                     </span>
                             </div>
                         </td>
@@ -42,10 +46,12 @@
                             <div class="form-group">
                                 <input type="text" name="lastName" class="form-control input-underline input-lg"
                                        placeholder="Apellido"
+                                       ng-maxlength="50"
                                        ng-model="newUser.lastName" required>
                                     <span style="color:#d9534f"
                                           ng-show="myForm.lastName.$dirty && myForm.lastName.$invalid">
                                         <span ng-show="myForm.lastName.$error.required">Indique su Apellido</span>
+                                        <span ng-show="myForm.lastName.$error.maxlength">No puede contener mas de 50 caracteres.</span>
                                     </span>
                             </div>
                         </td>
@@ -54,8 +60,14 @@
                         <td colspan="2">
                             <div class="form-group">
                                     <textarea rows="3" class="form-control input-underline input-lg"
+                                              name = "address"
                                               placeholder="Dirección"
+                                              ng-maxlength="500"
                                               ng-model="newUser.address"></textarea>
+                                    <span style="color:#d9534f"
+                                          ng-show="myForm.address.$dirty && myForm.lastName.$invalid">
+                                        <span ng-show="myForm.address.$error.maxlength">No puede contener mas de 500 caracteres.</span>
+                                    </span>
                             </div>
                         </td>
                     </tr>
@@ -92,13 +104,19 @@
                         <td>
                             <div class="form-group">
                                 <input type="text" class="form-control input-underline input-lg"
+                                       ng-focus="y = '(9999) 999-9999'"
                                        placeholder="Teléfono de Habitación"
+                                       ui-mask="{{y}}"
+                                       ui-mask-placeholder
                                        ng-model="newUser.homePhone">
                             </div>
                         </td>
                         <td>
                             <div class="form-group">
                                 <input type="text" class="form-control input-underline input-lg"
+                                       ng-focus="x = '(9999) 999-9999'"
+                                       ui-mask="{{x}}"
+                                       ui-mask-placeholder
                                        placeholder="Teléfono Celular"
                                        ng-model="newUser.cellPhone">
                             </div>
@@ -107,8 +125,11 @@
                     <tr>
                         <td colspan="2">
                             <div class="form-group">
-                                <input type="number" name="identityDoc" class="form-control input-underline input-lg"
+                                <input type="text" name="identityDoc" class="form-control input-underline input-lg"
                                        ng-model="newUser.identityDoc"
+                                       ng-focus="z = '99999?9?9?9'"
+                                       ui-mask="{{z}}"
+                                       ui-mask-placeholder
                                        placeholder="Cédula"
                                        required>
                                     <span style="color:#d9534f"
@@ -123,8 +144,13 @@
                         <td colspan="2">
                             <div class="form-group">
                                 <input type="password" class="form-control input-underline input-lg"
+                                       name = "password"
                                        placeholder="Contraseña"
-                                       ng-model="newUser.user.password">
+                                       ng-model="newUser.user.password" required>
+                                <span style="color:#d9534f"
+                                      ng-show="myForm.password.$dirty && myForm.password.$invalid">
+                                        <span ng-show="myForm.password.$error.required">Debe colocar una Contraseña</span>
+                                </span>
                             </div>
                         </td>
 

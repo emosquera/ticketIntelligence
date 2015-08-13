@@ -18,7 +18,7 @@ angular
     .provider('myAppConfiguration', function () {
         // default values
         var values = {
-            url: 'http://147.47.7.103',
+            url: 'http://192.168.1.109',
             port : ':8000'
         };
         return {

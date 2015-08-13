@@ -17,11 +17,13 @@
                             <div class="form-group">
                                 <input type="email" name="email" class="form-control input-underline input-lg"
                                        placeholder="Correo Electrónico"
+                                       ng-maxlength="320"
                                        ng-model="newCompany.user.email" required>
                                     <span style="color:#d9534f"
                                           ng-show="myForm.email.$dirty && myForm.email.$invalid">
                                         <span ng-show="myForm.email.$error.required">El correo no puede estar en blanco</span>
                                         <span ng-show="myForm.email.$error.email">Correo inválido.</span>
+                                        <span ng-show="myForm.email.$error.maxlength">No puede contener mas de 320 caracteres.</span>
                                     </span>
                             </div>
                         </td>
@@ -31,6 +33,9 @@
                             <div class="form-group">
                                 <input type="text" name="identityDoc" class="form-control input-underline input-lg"
                                        ng-model="newCompany.identityDoc"
+                                       ng-focus="y = 'A-99999999-9'"
+                                       ui-mask="{{y}}"
+                                       ui-mask-placeholder
                                        placeholder="R.I.F."
                                        required>
                                     <span style="color:#d9534f"
@@ -42,10 +47,12 @@
                             <div class="form-group">
                                 <input type="text" name="name" class="form-control input-underline input-lg"
                                        placeholder="Razón Social"
+                                       ng-maxlength="200"
                                        ng-model="newCompany.name" required>
                                     <span style="color:#d9534f"
                                           ng-show="myForm.name.$dirty && myForm.name.$invalid">
                                         <span ng-show="myForm.name.$error.required">Indique su Nombre</span>
+                                        <span ng-show="myForm.name.$error.maxlength">No puede contener mas de 200 caracteres.</span>
                                     </span>
                             </div>
                         </td>
@@ -55,8 +62,14 @@
                         <td colspan="2">
                             <div class="form-group">
                                     <textarea rows="3" class="form-control input-underline input-lg"
+                                              name = "address"
                                               placeholder="Dirección"
+                                              ng-maxlength="500"
                                               ng-model="newCompany.address"></textarea>
+                                    <span style="color:#d9534f"
+                                        ng-show="myForm.address.$dirty && myForm.lastName.$invalid">
+                                        <span ng-show="myForm.address.$error.maxlength">No puede contener mas de 500 caracteres.</span>
+                                    </span>
                             </div>
                         </td>
                     </tr>
@@ -93,6 +106,9 @@
                         <td colspan="2">
                             <div class="form-group">
                                 <input type="text" class="form-control input-underline input-lg"
+                                       ng-focus="x = '(9999) 999-9999'"
+                                       ui-mask="{{x}}"
+                                       ui-mask-placeholder
                                        placeholder="Teléfono"
                                        ng-model="newCompany.phone">
                             </div>
@@ -102,8 +118,13 @@
                         <td colspan="2">
                             <div class="form-group">
                                 <input type="password" class="form-control input-underline input-lg"
+                                       name = "password"
                                        placeholder="Contraseña"
-                                       ng-model="newCompany.user.password">
+                                       ng-model="newCompany.user.password" required>
+                                <span style="color:#d9534f"
+                                      ng-show="myForm.password.$dirty && myForm.password.$invalid">
+                                        <span ng-show="myForm.password.$error.required">Debe colocar una Contraseña</span>
+                                </span>
                             </div>
                         </td>
                     </tr>
