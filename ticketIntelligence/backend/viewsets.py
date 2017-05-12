@@ -95,7 +95,7 @@ class BranchViewSet(viewsets.ModelViewSet):
                 type=UserType.BRANCH,
                 address=request.data["address"],
                 phone=request.data["phone"],
-                company=company,
+                branchCompany=company,
                 city=city,
                 user=user)
             branch.save()

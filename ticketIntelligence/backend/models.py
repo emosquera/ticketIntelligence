@@ -5,7 +5,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from enums.enums import UserType, TicketStatus, UserPermissions
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes import generic
+from django.contrib.contenttypes.fields import GenericForeignKey
 
 
 # Create your models here.
@@ -55,7 +55,7 @@ class Branch(UserProfile):
     address = models.TextField(max_length=1000, blank=True)
     phone = models.TextField(max_length=20, blank=True)
     city = models.ForeignKey(City)
-    company = models.ForeignKey(Company)
+    branchCompany = models.ForeignKey(Company)
 
     class Meta:
         permissions = ((UserPermissions.IS_BRANCH, "Es una sucursal"),)
@@ -89,5 +89,5 @@ class Ticket(models.Model):
         verbose_name='related object',
         null=True,
     )
-    content_object = generic.GenericForeignKey('content_type', 'object_id')
+    content_object = GenericForeignKey('content_type', 'object_id')
     status = models.CharField(max_length=20, choices=TicketStatus.choices())

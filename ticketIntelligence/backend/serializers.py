@@ -84,5 +84,5 @@ class BranchSerializer(CustomSerializer):
 
     class Meta:
         model = Branch
-        fields = ('id', 'nickName', 'address', 'phone', 'city', 'company', 'type',
+        fields = ('id', 'nickName', 'address', 'phone', 'city', 'branchCompany', 'type',
                   'user')
