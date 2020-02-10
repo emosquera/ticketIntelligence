@@ -7,9 +7,7 @@ from enums.enums import UserType, TicketStatus, UserPermissions
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 
-
 # Create your models here.
-
 
 class State(models.Model):
     name = models.CharField(max_length=100)

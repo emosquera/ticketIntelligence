@@ -23,7 +23,6 @@ from rest_framework.routers import DefaultRouter
 
 
 router = DefaultRouter()
-
 router.register(r'states', StateViewSet)
 router.register(r'cities', CityViewSet)
 router.register(r'customers', CustomerViewSet)

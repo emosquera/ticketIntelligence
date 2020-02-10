@@ -5,7 +5,7 @@ from backend.models import Customer, Company
 from backend.serializers import CustomerSerializer
 from django.contrib.auth.models import User, Permission
 
-__author__ = 'conamerica15'
+__author__ = 'Edgar Mosquera'
 
 
 def auth_user(user, request):

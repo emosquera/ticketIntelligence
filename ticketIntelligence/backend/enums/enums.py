@@ -1,6 +1,4 @@
 # -*- encoding: utf-8 -*-
-
-
 import inspect
 from enum import Enum
 
